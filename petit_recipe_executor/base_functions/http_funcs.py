@@ -1,9 +1,7 @@
-from typing import Any, Optional
+from typing import Optional
 
 import requests
 
-# output can be
-# json | text | none | response
 
 def _request(
     method: str,
@@ -116,34 +114,3 @@ def get_ping(
 ):
     res = (session or requests).get(url, headers=headers)
     return res.ok
-
-
-def contains(input: str, inside: str) -> bool:
-    return inside in input
-
-
-def pick(input: dict, key: str) -> Any:
-    return input.__getattribute__(key)
-
-
-def equal(a: Any, b: Any):
-    return a == b
-
-def not_equal(a: Any, b: Any):
-    return a != b
-
-functions = {
-    "http.get": get,
-    "http.post": post,
-    "http.put": put,
-    "http.delete": delete,
-    "http.patch": patch,
-
-    "http.ping_get": get_ping,
-
-    # basic utils
-    "pick": pick,
-    "contains": contains,
-    "equal": equal,
-    "not_equal": not_equal,
-}
